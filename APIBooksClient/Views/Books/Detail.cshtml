@@ -1,0 +1,44 @@
+﻿@model APIBooksClient.DTO.Books
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detalles del Libro</h2>
+
+<div>
+    <h2>Detalles</h2>
+    <a>
+        @Html.ActionLink("Volver", "Index", "Books", new { }, null)
+    </a>
+    <br />
+    <br />
+</div>
+
+<div class="panel">
+
+    <div class="row stats-row">
+        <div align="left" class="col">
+            <b>Title</b>
+            <p class="stats">@Model.Title</p>
+        </div>
+        <div align="left" class="col">
+            <b>Description</b>
+            <p class="stats">@Model.Description</p>
+        </div>
+        <div align="left" class="col">
+            <b>Page Count</b>
+            <p class="stats">@Model.PageCount</p>
+        </div>
+        <div align="left" class="col">
+            <b>Excerpt</b>
+            <p class="stats">@Model.Excerpt</p>
+        </div>
+        <div align="left" class="col">
+            <b>Publish Date</b>
+            <p class="stats">@Model.PublishDate</p>
+        </div>
+    </div>
+
+</div>
+
+

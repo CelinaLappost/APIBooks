@@ -1,0 +1,59 @@
+﻿@model APIBooksClient.DTO.Books
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Libro</h2>
+
+<body>
+
+    @using (Html.BeginForm())
+    {
+
+<fieldset>
+    <legend>
+        Libro
+    </legend>
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.Title)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(Model => Model.Title)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.Description)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(Model => Model.Description)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.PageCount)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(Model => Model.PageCount)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.Excerpt)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(Model => Model.Excerpt)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.PublishDate)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(Model => Model.PublishDate, new { @type = "date", @Value = Model.PublishDate.ToString("yyyy-MM-dd") })
+    </div>
+    <br />
+    <input type="submit" value="Editar libro" />
+</fieldset>}
+
+    @if (ViewBag.Error != null)
+    {
+<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Error");
+            };
+</script>}
+</body>

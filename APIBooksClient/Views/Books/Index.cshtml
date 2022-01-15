@@ -1,0 +1,65 @@
+﻿@model List<APIBooksClient.DTO.Books>
+@{
+    ViewBag.Title = "Aplicacion de Libros";
+}
+
+<h2>Lista Libros</h2>
+<a>
+    @Html.ActionLink("Crear Libro", "Create", "Books", new { }, null);
+</a>
+<br />
+@using (Html.BeginForm("Index", "Books", FormMethod.Get))
+            {
+                <label>
+                    Buscar por ID
+                </label>
+                <br />
+                @Html.TextBox("id")
+    <input type="submit" value="Buscar" />
+            }
+
+@if (ViewBag.Error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Error");
+        }
+    </script>
+}
+
+<br />
+<br />
+<body>
+    <table class="table table-bordered table-condensed table-hover">
+        <thead>
+            <tr>
+                <td>TITLE</td>
+                <td>DESCRIPTION</td>
+                <td>PAGE COUNT</td>
+                <td>EXCERPT</td>
+                <td>PUBLISH DATE</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.PageCount</td>
+                <td>@item.Excerpt</td>
+                <td>@item.PublishDate</td>
+                <td>
+                    @Html.ActionLink("Ver Detalles", "Detail", "Books", new { id = item.id }, null)
+                    @Html.ActionLink("Editar", "Edit", "Books", new { id = item.id }, null)
+                    @Html.ActionLink("Eliminar", "Delete", "Books", new { id = item.id }, null)
+
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
