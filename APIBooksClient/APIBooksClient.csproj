@@ -190,6 +190,7 @@
     <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Books\Detail.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

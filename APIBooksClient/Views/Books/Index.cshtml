@@ -1,65 +1,87 @@
 ﻿@model List<APIBooksClient.DTO.Books>
 @{
     ViewBag.Title = "Aplicacion de Libros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista Libros</h2>
-<a>
-    @Html.ActionLink("Crear Libro", "Create", "Books", new { }, null)
-</a>
-<br />
-@using (Html.BeginForm("Index", "Books", FormMethod.Get))
-            {
-                <label>
-                    Buscar por ID
-                </label>
-                <br />
-                @Html.TextBox("id")
-    <input type="submit" value="Buscar" />
-            }
+<div class="container">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissable fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" asp-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    =======
+    <h2>Lista Libros</h2>
+    <a>
+        @Html.ActionLink("Crear Libro", "Create", "Books", new { }, null)
+    </a>
+    <br />
+    @using (Html.BeginForm("Index", "Books", FormMethod.Get))
+    {
+        <label>
+            Buscar por ID
+        </label>
+        <br />
+        @Html.TextBox("id")
+        <input type="submit" value="Buscar" />
+    }
+    >>>>>>> 70ce4e9ace29f6ea986d0838f8a2e8800c1a5495
 
-@if (ViewBag.Error != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            alert("@ViewBag.Error");
-        }
-    </script>
-}
+    <!-- aqui creamos el titulo -->
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista Books</h3>
+        </div>
 
-<br />
-<br />
-<body>
-    <table class="table table-bordered table-condensed table-hover">
-        <thead>
-            <tr>
-                <td>TITLE</td>
-                <td>DESCRIPTION</td>
-                <td>PAGE COUNT</td>
-                <td>EXCERPT</td>
-                <td>PUBLISH DATE</td>
-                <td>Acciones</td>
-            </tr>
-        </thead>
+        <!--aqui creamos el boton de crear nuevo libro-->
+        <div class="col-ms-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Books">Crear Libro</a>
 
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td>@item.PageCount</td>
-                <td>@item.Excerpt</td>
-                <td>@item.PublishDate</td>
-                <td>
-                    @Html.ActionLink("Ver Detalles", "Detail", "Books", new { id = item.id }, null)
-                    @Html.ActionLink("Editar", "Edit", "Books", new { id = item.id }, null)
-                    @Html.ActionLink("Eliminar", "Delete", "Books", new { id = item.id }, null)
+        </div>
 
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</body>
+    </div>
 
+    <!--aqui creamos lista libros-->
+    <div class="row">
+
+        <table class="table table-bordered tabble-striped">
+            <thead>
+                <tr>
+                    <td>TITLE</td>
+                    <td>DESCRIPTION</td>
+                    <td>PAGE COUNT</td>
+                    <td>EXCERPT</td>
+                    <td>PUBLISH DATE</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.PageCount</td>
+                        <td>@item.Excerpt</td>
+                        <td>@item.PublishDate</td>
+                        <td>
+                            <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning">Editar</a>
+                            <a asp-controller="Books" asp-action="Delete" asp-route-id="@item.id" class="btn btn-warning">Eliminar</a>
+                            <a asp-controller="Books" asp-action="Detail" asp-route-id="@item.id" class="btn btn-warning">Ver Detalle</a>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!-- fin del nuevo formulario -->

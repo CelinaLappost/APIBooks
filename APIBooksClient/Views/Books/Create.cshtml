@@ -1,61 +1,65 @@
 ﻿@model APIBooksClient.DTO.Books
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Nuevo Libro</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Crear Books</h2>
+        </div>
+    </div>
 
-<body>
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-ation="Create">
+                <div asp-Validation-summary="ModelOnly" class="text-danger"></div>
 
-    @using (Html.BeginForm())
-    {
+                <div class="form-group">
+                    @Html.LabelFor(Model => Model.Title)
+                    @Html.TextBoxFor(Model => Model.Title)
+                </div>
 
-        <fieldset>
-            <legend>
-                Crear Libro
-            </legend>
-            <div class="editor-label">
-                @Html.LabelFor(Model => Model.Title)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(Model => Model.Title)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(Model => Model.Description)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(Model => Model.Description)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(Model => Model.PageCount)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(Model => Model.PageCount)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(Model => Model.Excerpt)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(Model => Model.Excerpt)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(Model => Model.PublishDate)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(Model => Model.PublishDate, new { @type = "date", @Value = Model.PublishDate.ToString("yyyy-MM-dd") })
-            </div>
-            <br />
-            <input type="submit" value="Crear libro" />
-        </fieldset>}
+                <div class="form-group">
+                    @Html.LabelFor(Model => Model.Description))
+                    @Html.TextBoxFor(Model => Model.Description)
+                </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(Model => Model.PageCount)
+                    @Html.TextBoxFor(Model => Model.PageCount)
+                </div>
 
-    @if (ViewBag.Error != null)
-    {
-        <script type="text/javascript">
+                <div class="form-group">
+                    @Html.LabelFor(Model => Model.Excerpt)
+                    @Html.TextBoxFor(Model => Model.Excerpt)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(Model => Model.PublishDate)
+                    @Html.TextBoxFor(Model => Model.PublishDate)
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Crear Libro" class="btn btn-primary" />
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <script type="text/javascript">
 
             window.onload = function () {
                 alert("@ViewBag.Error");
             };
-        </script>
-}
-</body>
+                    </script>
+                }
+
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<!--Final del formulario-->

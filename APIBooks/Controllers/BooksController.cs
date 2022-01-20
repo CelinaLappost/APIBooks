@@ -152,14 +152,14 @@ namespace APIBooks.Controllers
 
         //Borrar Libro
 
-    private bool DeleteBook(int id)
+        private bool DeleteBook(int id)
         {
             try
             {
                 bool result = false;
 
                 HttpClient client = new HttpClient();
-                var data = client.DeleteAsync($"https://fakerestapi.azurewebsites.net/api/v1/Books/{id}").ContinueWith(d => 
+                var data = client.DeleteAsync($"https://fakerestapi.azurewebsites.net/api/v1/Books/{id}").ContinueWith(d =>
                 {
                     if (d.Result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -217,6 +217,7 @@ namespace APIBooks.Controllers
         }
 
         //crear Books
+        [HttpPost]
         public IHttpActionResult Post(Books books)
         {
             try
@@ -232,13 +233,13 @@ namespace APIBooks.Controllers
             catch (Exception ex)
             {
 
-                throw ex;
+                return Conflict();
             }
         }
 
         //Actualizar Libro
         [HttpPut]
-    public IHttpActionResult Put(int id, Books books)
+        public IHttpActionResult Put(int id, Books books)
         {
             try
             {
@@ -250,10 +251,10 @@ namespace APIBooks.Controllers
                 EditBook(id, books);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                return Conflict();
             }
         }
 

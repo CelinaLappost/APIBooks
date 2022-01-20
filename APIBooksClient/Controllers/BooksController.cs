@@ -20,10 +20,10 @@ namespace APIBooksClient.Controllers
     {
         public BooksController()
         {
-            //ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
         }
-        
+
         //Servicios 
 
         //Lista libros
@@ -226,6 +226,8 @@ namespace APIBooksClient.Controllers
             if (books != null)
             {
                 result = CreateBook(books);
+                TempData["mensaje"] = "Se creo el libro correctamente!";
+                return RedirectToAction("Index");
             }
             else
             {
@@ -260,6 +262,8 @@ namespace APIBooksClient.Controllers
             }
 
             bool result = EditBook(id, book);
+            TempData["mensaje"] = "Se edito el libro correctamente!";
+            return RedirectToAction("Index");
 
             if (!result)
             {
@@ -274,6 +278,8 @@ namespace APIBooksClient.Controllers
         public ActionResult Delete(int id)
         {
             bool result = DeleteBook(id);
+            TempData["mensaje"] = "Se elimino el libro correctamente!";
+            return RedirectToAction("Index");
             if (!result)
             {
                 ViewBag.Error = "Ha ocurrido un error!";
